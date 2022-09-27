@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from 'axios'
 import ReviewItem from '../components/ReviewItem'
+import './reviews.css'
 
 export default function Reviews() {
     
@@ -15,7 +16,7 @@ export default function Reviews() {
     }, [])
     console.log(allReviews)
     return <section className="reviews">
-        <ul>
+        <ul className="reviews-list">
             {allReviews.map((review) => (
                 <ReviewItem key={review.review_id} review={review} />
                 

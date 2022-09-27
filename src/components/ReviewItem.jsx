@@ -13,14 +13,22 @@ export default function reviewItem({ review }) {
         title,
         votes} = review;
     
-return <div className="review-item">
-    <p>{owner}</p>
-    <p>{title}</p>
-    <p>{created_at}</p>
-    <p>{category}</p>
-    <p>{review_body}</p>
-    {/* <img src={review_img_url} alt="image"/> */}
-    <p>{votes}</p>
-</div>
-
+return (
+  <div className="review-item">
+    
+    <div className="review-item-column-1">
+     <div className="review-item-image-container"> <img className="review-item-image" src={review_img_url} alt="game review image"/></div>
+      <p>{owner}</p>
+      <p>{created_at}</p>
+    </div>
+    
+    <div className="review-item-column-2">
+      <p className="title">{title}</p>
+      <p>Category: {category}</p>
+      <p className='review-body'>{review_body}</p>
+      <p>{votes}</p>
+    </div>
+ 
+    </div>
+  )
 }
