@@ -12,6 +12,7 @@ export default function Reviews() {
             .then(({ data }) => setAllReviews(data.reviews))
             
     }, [])
+    
     return <section className="reviews">
         <ul className="reviews-list">
             {allReviews.map((review) => (

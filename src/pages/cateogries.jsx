@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import './categories.css';
@@ -15,15 +16,16 @@ export default function Categories() {
             })
     }, []);
 
-    console.log('allCategories', allCategories);
 
     return <section className="categories">
         <ul className="categories-list">
 
             {allCategories.map((category, index) => (
-                <li key={`${category.slug}-${index}`}>
-                  { category.slug }
-                  { category.description }
+                <li className="each-category" key={`${category.slug}-${index}`}>
+
+                  <Link to={`/category/${category.slug}`}><p>{ category.slug }</p></Link>
+                  <p>{ category.description }</p>
+                
                 </li>
 
         ))}
