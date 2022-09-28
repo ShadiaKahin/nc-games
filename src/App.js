@@ -1,15 +1,16 @@
-import logo from './logo.svg';
 import './App.css';
-
-// todo - temporarily rendering categories here, add it to the pages folder
-import Categories from './cateogries';
+import { Route, Routes } from "react-router-dom";
+import Reviews from './pages/Reviews';
+import Categories from './pages/cateogries';
 
 function App() {
   return (
     <div className="App">
       {/* <header className="App-header"></header> */}
-
-      <Categories />
+      <Routes>
+      <Route path="/reviews" element={<Reviews/>} />
+      <Route path="/categories" element={<Categories/>} />
+      </Routes>
     </div>
   );
 }
