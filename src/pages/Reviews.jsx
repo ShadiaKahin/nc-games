@@ -1,25 +1,22 @@
 import { useEffect, useState } from "react";
-import axios from 'axios'
 import ReviewItem from '../components/ReviewItem'
+import { getReviews } from '../requests';
 import './reviews.css'
 
 export default function Reviews() {
     
-    const [allReviews, setAllReviews] = useState([])
+    const [reviews, setReviews] = useState([])
 
     useEffect(() => {
-        axios.get('https://shadia-nc-games.herokuapp.com/api/reviews')
-            .then(({ data }) => setAllReviews(data.reviews))
-            .catch((err) => {
-                console.log('error', err)
-            })
+        getReviews()
+            .then(({ data }) => setReviews(data.reviews))
     }, [])
-    console.log(allReviews)
+    
+    
     return <section className="reviews">
         <ul className="reviews-list">
-            {allReviews.map((review) => (
+            {reviews.map((review) => (
                 <ReviewItem key={review.review_id} review={review} />
-                
         ))}
 
         </ul>

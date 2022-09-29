@@ -1,0 +1,12 @@
+.categories-list {
+    list-style: none;
+    background-color: rgb(147, 168, 172);
+}
+
+.each-category {
+    /* border: 1px solid black; */
+    padding: 15px;
+    border-radius: 20px;
+    margin: 20px;
+    background-color: rgb(245, 245, 245);
+}
