@@ -12,11 +12,11 @@ export default function Reviews() {
             .then(({ data }) => setReviews(data.reviews))
     }, [])
     
+    
     return <section className="reviews">
         <ul className="reviews-list">
             {reviews.map((review) => (
                 <ReviewItem key={review.review_id} review={review} />
-                
         ))}
 
         </ul>

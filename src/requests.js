@@ -6,14 +6,6 @@ const gamesApi = axios.create({
     baseURL: 'https://shadia-nc-games.herokuapp.com/api',
 });
 
-export const getReviews = () => {
-    return gamesApi
-        .get('/reviews')
-        .then((res) => {
-            return res;
-        })
-};
-
 export const getCategories = () => {
     return gamesApi
         .get('/categories')
@@ -22,9 +14,12 @@ export const getCategories = () => {
     })
 }
 
-export const getCategoryReviews = (category) => {
+export const getReviews = (category) => {
+
+    let queryParams = category && category.slug ? `?category='${category.slug}'` : '';
+        
     return gamesApi
-        .get('/reviews', { params: { category } })
+        .get(`/reviews${queryParams}`)
         .then((res) => {
             return res;
         })
