@@ -1,26 +1,23 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 
+import { getCategories } from '../requests';
 import './categories.css';
 
 export default function Categories() {
 
-    const [allCategories, setAllCategories] = useState([])
+    const [ categories, setCategories ] = useState([])
 
     useEffect(() => {
-        axios.get('https://shadia-nc-games.herokuapp.com/api/categories')
-            .then(({ data }) => setAllCategories(data.categories))
-            .catch((err) => {
-                console.log('error', err)
-            })
+        getCategories()
+            .then(({ data }) => setCategories(data.categories))
     }, []);
 
 
     return <section className="categories">
         <ul className="categories-list">
 
-            {allCategories.map((category, index) => (
+            { categories.map((category, index) => (
                 <li className="each-category" key={`${category.slug}-${index}`}>
 
                   <Link to={`/category/${category.slug}`}><p>{ category.slug }</p></Link>

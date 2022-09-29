@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
 
 import ReviewItem from '../components/ReviewItem';
-// import './category.css';
+import { getCategoryReviews } from '../requests';
 
 export default function Category() {
 
@@ -11,11 +10,8 @@ export default function Category() {
     const category = useParams();
 
     useEffect(() => {
-        axios.get(`https://shadia-nc-games.herokuapp.com/api/reviews/?category='${category.slug}'`)
-            .then(({ data }) => setCategoryReviews(data.reviews))
-            .catch((err) => {
-                console.log('error', err)
-            })
+        getCategoryReviews(category)
+          .then(({ data }) => setCategoryReviews(data.reviews))
     }, []);
 
     return <section className="category-reviews">
