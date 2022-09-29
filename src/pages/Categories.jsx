@@ -20,7 +20,7 @@ export default function Categories() {
             { categories.map((category, index) => (
                 <li className="each-category" key={`${category.slug}-${index}`}>
 
-                  <Link to={`/category/${category.slug}`}><p>{ category.slug }</p></Link>
+                  <Link to={`/reviews/${category.slug}`}><p>{ category.slug }</p></Link>
                   <p>{ category.description }</p>
                 
                 </li>

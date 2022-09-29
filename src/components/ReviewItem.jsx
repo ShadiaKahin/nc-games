@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import './review-item.css'
 
 export default function reviewItem({ review }) {
@@ -5,15 +7,16 @@ export default function reviewItem({ review }) {
     const {
         category,
         created_at,
-        // designer,
+        designer,
         owner,
         review_body,
-        // review_id,
+        review_id,
         review_img_url,
         title,
         votes} = review;
     
-return (
+    return (
+
   <div className="review-item">
     
     <div className="review-item-column-1">
@@ -22,13 +25,16 @@ return (
       <p>{created_at}</p>
     </div>
     
+   <Link to={`/review/${ review_id }`}>
     <div className="review-item-column-2">
       <p className="title">{title}</p>
       <p>Category: {category}</p>
+      <p>Designer: {designer}</p>
       <p className='review-body'>{review_body}</p>
       <p>{votes}</p>
     </div>
- 
-    </div>
+    </Link>
+            
+  </div>  
   )
 }

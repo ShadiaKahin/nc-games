@@ -1,18 +1,27 @@
-import { useEffect, useState } from "react";
-import ReviewItem from '../components/ReviewItem'
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+
+import ReviewItem from '../components/ReviewItem';
 import { getReviews } from '../requests';
 import './reviews.css'
 
 export default function Reviews() {
     
-    const [reviews, setReviews] = useState([])
+    const [reviews, setReviews] = useState([]);
+
+    const params = useParams();
+    let paramsObject = {}; 
+
+    if (params.slug) { paramsObject.category = params.slug };
 
     useEffect(() => {
-        getReviews()
+        getReviews(paramsObject)
             .then(({ data }) => setReviews(data.reviews))
     }, [])
     
-    
+
+  // todo - make a different title for category reviews??? to show its filtered?
+
     return <section className="reviews">
         <ul className="reviews-list">
             {reviews.map((review) => (

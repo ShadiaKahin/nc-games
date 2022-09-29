@@ -11,16 +11,21 @@ export const getCategories = () => {
         .get('/categories')
         .then((res) => {
             return res;
-    })
-}
+        })
+};
 
-export const getReviews = (category) => {
+export const getReviews = (queryObject) => {
 
-    let queryParams = category && category.slug ? `?category='${category.slug}'` : '';
+    let queryStr = '';
+
+    if (queryObject && queryObject.category) queryStr += `?category='${queryObject.category}'`;
+    if (queryObject && queryObject.review_id) queryStr += `?review_id=${queryObject.review_id}`;
         
     return gamesApi
-        .get(`/reviews${queryParams}`)
+        .get(`/reviews${queryStr}`)
         .then((res) => {
             return res;
         })
 };
+
+// todo - error when filtering by category and id
