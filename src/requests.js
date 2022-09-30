@@ -27,7 +27,7 @@ export const getReviews = (category) => {
 
 export const patchReview = (reviewId) => {
     return gamesApi
-        .patch(`/reviews/${ reviewId }`, { inc_votes: reviewId })
+        .patch(`/reviews/${ reviewId }`, { inc_votes: 1 })
         .then((res) => {
             return res.data;
     })
