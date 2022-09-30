@@ -17,6 +17,10 @@ export default function Review() {
             .then(({ data }) => setReviews(data.reviews))
     }, []);
 
+    if (!reviews.length) {
+      return <p>Loading...</p>    
+    }
+
     const {
         category,
         created_at,

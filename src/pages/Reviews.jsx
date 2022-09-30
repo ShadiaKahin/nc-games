@@ -12,7 +12,7 @@ export default function Reviews() {
     const params = useParams();
     let paramsObject = {}; 
 
-    if (params.slug) { paramsObject.category = params.slug };
+    if (params.category) { paramsObject.category = params.category };
 
     useEffect(() => {
         getReviews(paramsObject)
