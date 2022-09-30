@@ -1,26 +1,21 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { getReviews } from '../requests';
+import { getReviewById } from '../requests';
 
 export default function Review() {
 
-    const [reviews, setReviews] = useState([]);
+    const [review, setReview] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     const params = useParams();
-    let paramsObject = {}; 
-    if (params.review_id) { paramsObject.review_id = params.review_id };
-
 
     useEffect(() => {
-        getReviews(paramsObject)
-            .then(({ data }) => setReviews(data.reviews))
+        getReviewById(params.review_id)
+          .then((data) => setReview(data))
+            setIsLoading(false)
     }, []);
-
-    if (!reviews.length) {
-      return <p>Loading...</p>    
-    }
-
+    
     const {
         category,
         created_at,
@@ -30,9 +25,11 @@ export default function Review() {
         review_id,
         review_img_url,
         title,
-        votes} = reviews[0];
+        votes} = review;
 
-    return (
+   
+   return isLoading ? <p>Loading...</p> :
+   (
       <div>
         <div >
           <img  src={review_img_url} alt="game review image" />

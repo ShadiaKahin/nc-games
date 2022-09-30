@@ -14,6 +14,14 @@ export const getCategories = () => {
         })
 };
 
+export const getReviewById = (review_id) => {
+    return gamesApi
+        .get(`/reviews?review_id=${review_id}`)
+        .then((res) => {
+            return res.data.reviews[0];
+        })
+};
+
 export const getReviews = (queryObject) => {
 
     let queryStr = '';

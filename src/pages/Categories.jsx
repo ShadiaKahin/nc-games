@@ -6,15 +6,18 @@ import './categories.css';
 
 export default function Categories() {
 
-    const [ categories, setCategories ] = useState([])
+    const [categories, setCategories] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         getCategories()
             .then(({ data }) => setCategories(data.categories))
+            setIsLoading(false)
     }, []);
 
 
-    return <section className="categories">
+    return isLoading ? <p>Loading...</p> :
+    <section className="categories">
         <ul className="categories-list">
 
             { categories.map((category, index) => (
