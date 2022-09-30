@@ -15,21 +15,15 @@ export default function Categories() {
             setIsLoading(false)
     }, []);
 
-
     return isLoading ? <p>Loading...</p> :
     <section className="categories">
         <ul className="categories-list">
-
-            { categories.map((category, index) => (
-                <li className="each-category" key={`${category.category}-${index}`}>
-
-                  <Link to={`/reviews/${category.category}`}><p>{ category.category }</p></Link>
-                  <p>{ category.description }</p>
-                
-                </li>
-
+          {categories.map((category, index) => (
+            <li className="each-category" key={`${category.category}-${index}`}>
+                <Link to={`/reviews/${category.slug}`}><p>{ category.slug }</p></Link>
+                <p>{ category.description }</p>
+            </li>
         ))}
-
-        </ul>
-    </section>
+    </ul>
+  </section>
 }
