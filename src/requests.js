@@ -36,4 +36,13 @@ export const getReviews = (queryObject) => {
         })
 };
 
+
 // todo - error when filtering by category and id
+
+export const patchReview = (reviewId) => {
+    return gamesApi
+        .patch(`/reviews/${ reviewId }`, { inc_votes: 1 })
+        .then((res) => {
+            return res.data;
+    })
+}
