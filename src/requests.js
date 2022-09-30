@@ -24,3 +24,11 @@ export const getReviews = (category) => {
             return res;
         })
 };
+
+export const patchReview = (reviewId) => {
+    return gamesApi
+        .patch(`/reviews/${ reviewId }`, { inc_votes: reviewId })
+        .then((res) => {
+            return res.data;
+    })
+}
